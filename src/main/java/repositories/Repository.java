@@ -1,19 +1,33 @@
 package repositories;
 
 import entities.Contract;
+import sorters.BubbleSorter;
+import sorters.Sorter;
+
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Class repositories.Repository
+ *
  * @author Ekaterina Selivanova
  **/
 public class Repository {
-    /** Field contracts contains contracts**/
+    /**
+     * Field contracts contains contracts
+     **/
     private static Contract[] contracts = new Contract[100];
-    /** Field numberOfContracts counts number of contracts**/
+    /**
+     * Field numberOfContracts counts number of contracts
+     **/
     private static int numberOfContracts = 0;
+    private static final Predicate<Contract> SEARCH_BY_ID = a -> a.getId() > 10;
+    private static final Sorter sorter = new BubbleSorter();
 
     /**
      * Function getting contract by id
+     *
      * @param id - id of contract
      * @return return contract
      **/
@@ -28,6 +42,7 @@ public class Repository {
 
     /**
      * Function adding contract
+     *
      * @param contract - contract
      **/
     public static void addContract(Contract contract) {
@@ -40,6 +55,7 @@ public class Repository {
 
     /**
      * Function deleting contract by id
+     *
      * @param id - id of contract
      **/
     public static void deleteContract(int id) {
@@ -58,11 +74,12 @@ public class Repository {
 
     /**
      * Function shifting array values
+     *
      * @param id - show from what place starts shifting
      **/
     private static void shiftArrayValues(int id) {
         int start = findContract(id);
-        if (start == -1){
+        if (start == -1) {
             return;
         }
 
@@ -73,6 +90,7 @@ public class Repository {
 
     /**
      * Function finding value by id
+     *
      * @param id - id of contract
      * @return id of contract if contract was found
      **/
@@ -88,11 +106,26 @@ public class Repository {
     /**
      * Function printing all contracts
      **/
-    public static void printContracts(){
+    public static void printContracts() {
         System.out.println("Contracts {");
         for (int i = 0; i < numberOfContracts; i++) {
             System.out.println(contracts[i]);
         }
         System.out.println("}");
+    }
+
+    public static Optional<Contract> getByIndex(int index, Class expectedClass){
+
+    }
+
+    /**
+     * Function searching contract by condition
+     **/
+    public static Repository searchContract(Predicate<Contract> predicate) {
+        return new Repository();
+    }
+
+    public static void sort(Comparator<Contract> comparator){
+        sorter.sort(contracts, comparator);
     }
 }
