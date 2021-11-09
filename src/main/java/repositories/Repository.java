@@ -1,6 +1,6 @@
 package repositories;
 
-import contracts.Contract;
+import entities.Contract;
 
 /**
  * Class repositories.Repository

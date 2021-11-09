@@ -1,6 +1,4 @@
-package contracts;
-
-import models.Person;
+package entities;
 
 import java.time.LocalDate;
 import java.util.Objects;

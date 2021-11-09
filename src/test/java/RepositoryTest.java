@@ -1,8 +1,8 @@
-import contracts.Contract;
-import contracts.DigitalTelevisionContract;
-import contracts.MobileContract;
+import entities.Contract;
+import entities.DigitalTelevisionContract;
+import entities.MobileContract;
 import enums.Gender;
-import models.Person;
+import entities.Person;
 import org.junit.*;
 import repositories.Repository;
 
