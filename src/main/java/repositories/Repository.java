@@ -116,6 +116,7 @@ public class Repository {
 
     public static Optional<Contract> getByIndex(int index, Class expectedClass){
 
+        return null;
     }
 
     /**
