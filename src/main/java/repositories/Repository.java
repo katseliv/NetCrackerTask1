@@ -1,5 +1,9 @@
+package repositories;
+
+import contracts.Contract;
+
 /**
- * Class Repository
+ * Class repositories.Repository
  * @author Ekaterina Selivanova
  **/
 public class Repository {

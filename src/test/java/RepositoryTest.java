@@ -1,4 +1,10 @@
+import contracts.Contract;
+import contracts.DigitalTelevisionContract;
+import contracts.MobileContract;
+import enums.Gender;
+import models.Person;
 import org.junit.*;
+import repositories.Repository;
 
 import java.time.LocalDate;
 

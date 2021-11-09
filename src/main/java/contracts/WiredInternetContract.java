@@ -1,10 +1,15 @@
+package contracts;
+
+import contracts.Contract;
+import models.Person;
+
 import java.time.LocalDate;
 
 /**
- * Class WiredInternetContract
+ * Class contracts.WiredInternetContract
  * @autor Ekaterina Selivanova
  */
-public class WiredInternetContract extends Contract{
+public class WiredInternetContract extends Contract {
     /** Field connectionSpeed means connection speed**/
     private int connectionSpeed;
 

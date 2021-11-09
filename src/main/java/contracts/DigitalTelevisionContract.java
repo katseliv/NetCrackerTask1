@@ -1,10 +1,15 @@
+package contracts;
+
+import contracts.Contract;
+import models.Person;
+
 import java.time.LocalDate;
 
 /**
- * Class DigitalTelevisionContract
+ * Class contracts.DigitalTelevisionContract
  * @author Ekaterina Selivanova
  **/
-public class DigitalTelevisionContract extends Contract{
+public class DigitalTelevisionContract extends Contract {
     /** Field numberOfChannels means number of channels**/
     private int numberOfChannels;
 

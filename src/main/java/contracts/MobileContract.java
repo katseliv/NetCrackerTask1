@@ -1,10 +1,15 @@
+package contracts;
+
+import contracts.Contract;
+import models.Person;
+
 import java.time.LocalDate;
 
 /**
- * Class MobileContract
+ * Class contracts.MobileContract
  * @autor Ekaterina Selivanova
  */
-public class MobileContract extends Contract{
+public class MobileContract extends Contract {
     /** Field numberOfMinutes means number of minutes**/
     private int numberOfMinutes;
     /** Field numberOfSMS means number of SMS**/

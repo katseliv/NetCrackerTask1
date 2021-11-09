@@ -1,8 +1,12 @@
+package contracts;
+
+import models.Person;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Class Contract
+ * Class contracts.Contract
  * @author Ekaterina Selivanova
  **/
 public class Contract {
@@ -119,7 +123,7 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract { " +
+        return "contracts.Contract { " +
                 "id = " + id +
                 ", startDate = " + startDate +
                 ", endDate = " + endDate +

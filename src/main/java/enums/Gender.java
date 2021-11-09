@@ -1,5 +1,7 @@
+package enums;
+
 /**
- * Enum Gender
+ * Enum enums.Gender
  * @author Ekaterina Selivanova
  **/
 public enum Gender {

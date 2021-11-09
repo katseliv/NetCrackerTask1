@@ -1,9 +1,13 @@
+package models;
+
+import enums.Gender;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
 /**
- * Class Person
+ * Class models.Person
  * @author Ekaterina Selivanova
  **/
 public class Person {
@@ -188,7 +192,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person { " +
+        return "models.Person { " +
                 "id = " + id +
                 ", firstName = '" + firstName + '\'' +
                 ", midName = '" + midName + '\'' +
