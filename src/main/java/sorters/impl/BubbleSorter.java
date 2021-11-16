@@ -1,4 +1,4 @@
-package sorters;
+package sorters.impl;
 
 import entities.Contract;
 import sorters.Sorter;

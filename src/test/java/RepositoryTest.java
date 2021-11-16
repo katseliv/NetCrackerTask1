@@ -7,6 +7,7 @@ import org.junit.*;
 import repositories.Repository;
 
 import java.time.LocalDate;
+import java.util.function.Predicate;
 
 public class RepositoryTest {
     private static final Repository repository = new Repository();
@@ -18,6 +19,9 @@ public class RepositoryTest {
     private static final Contract contract2 = new DigitalTelevisionContract(
             LocalDate.of(2020, 7, 25), LocalDate.of(2021, 8, 3),
             3457, owner, 300);
+    private static final Contract contract3 = new DigitalTelevisionContract(
+            LocalDate.of(2020, 7, 25), LocalDate.of(2021, 8, 3),
+            400, owner, 300);
 
     @BeforeClass
     public static void initialization() {
@@ -62,6 +66,17 @@ public class RepositoryTest {
 
         boolean expected = expectedContract == null;
         Assert.assertTrue(expected);
+    }
+
+    @Test
+    public void searchContracts(){
+        repository.addContract(contract3);
+
+        repository.search(a -> a.getContractNumber() >= 1000);
+
+        for(Contract contract : ){
+
+        }
     }
 
     @After

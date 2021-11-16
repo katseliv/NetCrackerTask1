@@ -1,26 +1,53 @@
 package repositories;
 
 import entities.Contract;
-import sorters.BubbleSorter;
+import sorters.impl.BubbleSorter;
 import sorters.Sorter;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Class repositories.Repository
+ *
  * @author Ekaterina Selivanova
  **/
 public class Repository {
-    private Predicate<Contract> SEARCH_BY_ID = (a) -> a.getId() == 1;
-    private Sorter sorter =  new BubbleSorter();
-    /** Field contracts contains contracts**/
+    /**
+     * Field sorter
+     **/
+    private Sorter sorter = new BubbleSorter();
+    /**
+     * Field contracts contains contracts
+     **/
     private Contract[] contracts = new Contract[100];
-    /** Field numberOfContracts counts number of contracts**/
+    /**
+     * Field numberOfContracts counts number of contracts
+     **/
     private int numberOfContracts = 0;
+
+    public Repository() {
+
+    }
+
+    private Repository(Contract[] contracts) {
+        this.contracts = contracts;
+    }
+
+    /**
+     * Function setting sorter
+     *
+     * @param sorter - sorter of contracts
+     **/
+    public void setSorter(Sorter sorter) {
+        this.sorter = sorter;
+    }
 
     /**
      * Function getting contract by id
+     *
      * @param id - id of contract
      * @return return contract
      **/
@@ -35,6 +62,7 @@ public class Repository {
 
     /**
      * Function adding contract
+     *
      * @param contract - contract
      **/
     public void addContract(Contract contract) {
@@ -47,6 +75,7 @@ public class Repository {
 
     /**
      * Function deleting contract by id
+     *
      * @param id - id of contract
      **/
     public void deleteContract(int id) {
@@ -65,11 +94,12 @@ public class Repository {
 
     /**
      * Function shifting array values
+     *
      * @param id - show from what place starts shifting
      **/
     private void shiftArrayValues(int id) {
         int start = findContract(id);
-        if (start == -1){
+        if (start == -1) {
             return;
         }
 
@@ -80,6 +110,7 @@ public class Repository {
 
     /**
      * Function finding value by id
+     *
      * @param id - id of contract
      * @return id of contract if contract was found
      **/
@@ -92,18 +123,31 @@ public class Repository {
         return -1;
     }
 
-    public Repository search(Predicate<Contract> condition){
-        return new Repository();
+    /**
+     * Function searching values by condition
+     *
+     * @param condition - condition for contracts
+     * @return new repository filled with contracts that match the condition
+     **/
+    public Repository search(Predicate<Contract> condition) {
+        return new Repository(Arrays.stream(contracts).filter(condition).toArray(Contract[]::new));
     }
 
-    public Repository sort(Comparator<Contract> comparator){
+    /**
+     * Function sorting values by comparator
+     *
+     * @param comparator - comparator
+     * @return new repository filled with contracts that sort by comparator
+     **/
+    public Repository sort(Comparator<Contract> comparator) {
         sorter.sort(contracts, comparator);
+        return new Repository(contracts);
     }
 
     /**
      * Function printing all contracts
      **/
-    public void printContracts(){
+    public void printContracts() {
         System.out.println("Contracts {");
         for (int i = 0; i < numberOfContracts; i++) {
             System.out.println(contracts[i]);
