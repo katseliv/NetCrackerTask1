@@ -1,12 +1,19 @@
 package repositories;
 
 import entities.Contract;
+import sorters.BubbleSorter;
+import sorters.Sorter;
+
+import java.util.Comparator;
+import java.util.function.Predicate;
 
 /**
  * Class repositories.Repository
  * @author Ekaterina Selivanova
  **/
 public class Repository {
+    private Predicate<Contract> SEARCH_BY_ID = (a) -> a.getId() == 1;
+    private Sorter sorter =  new BubbleSorter();
     /** Field contracts contains contracts**/
     private Contract[] contracts = new Contract[100];
     /** Field numberOfContracts counts number of contracts**/
@@ -83,6 +90,14 @@ public class Repository {
             }
         }
         return -1;
+    }
+
+    public Repository search(Predicate<Contract> condition){
+        return new Repository();
+    }
+
+    public Repository sort(Comparator<Contract> comparator){
+        sorter.sort(contracts, comparator);
     }
 
     /**
