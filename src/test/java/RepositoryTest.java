@@ -9,6 +9,7 @@ import repositories.Repository;
 import java.time.LocalDate;
 
 public class RepositoryTest {
+    private static final Repository repository = new Repository();
     private static final Person owner = new Person("Ivan", "Ivanovich", "Ivanov",
             LocalDate.of(1990, 3, 3), Gender.MAN, 2010, 877740);
     private static final Contract contract1 = new MobileContract(
@@ -21,14 +22,14 @@ public class RepositoryTest {
     @BeforeClass
     public static void initialization() {
         System.out.println(owner);
-        Repository.addContract(contract1);
-        Repository.printContracts();
+        repository.addContract(contract1);
+        repository.printContracts();
         System.out.println();
     }
 
     @Test
     public void getContractById() {
-        Contract expectedContract = Repository.getContract(contract1.getId());
+        Contract expectedContract = repository.getContract(contract1.getId());
 
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + contract1);
@@ -40,9 +41,9 @@ public class RepositoryTest {
 
     @Test
     public void addContract() {
-        Repository.addContract(contract2);
+        repository.addContract(contract2);
 
-        Contract expectedContract = Repository.getContract(contract2.getId());
+        Contract expectedContract = repository.getContract(contract2.getId());
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + contract2);
 
@@ -53,9 +54,9 @@ public class RepositoryTest {
 
     @Test
     public void deleteContract(){
-        Repository.deleteContract(contract1.getId());
+        repository.deleteContract(contract1.getId());
 
-        Contract expectedContract = Repository.getContract(contract1.getId());
+        Contract expectedContract = repository.getContract(contract1.getId());
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + null);
 
@@ -66,7 +67,7 @@ public class RepositoryTest {
     @After
     public void print(){
         System.out.println();
-        Repository.printContracts();
+        repository.printContracts();
         System.out.println();
     }
 }
