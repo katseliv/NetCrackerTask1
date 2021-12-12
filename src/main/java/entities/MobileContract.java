@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Class contracts.MobileContract
@@ -74,5 +75,28 @@ public class MobileContract extends Contract {
      **/
     public void setNumberOfGB(int numberOfGB) {
         this.numberOfGB = numberOfGB;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MobileContract)) return false;
+        if (!super.equals(o)) return false;
+        MobileContract that = (MobileContract) o;
+        return getNumberOfMinutes() == that.getNumberOfMinutes() && getNumberOfSMS() == that.getNumberOfSMS() && getNumberOfGB() == that.getNumberOfGB();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getNumberOfMinutes(), getNumberOfSMS(), getNumberOfGB());
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() + ";" +
+                this.getClass().getName() + ";" +
+                numberOfMinutes + "|" +
+                numberOfSMS + "|" +
+                numberOfGB + ";";
     }
 }

@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Class contracts.DigitalTelevisionContract
@@ -36,5 +37,26 @@ public class DigitalTelevisionContract extends Contract {
      **/
     public void setNumberOfChannels(int numberOfChannels) {
         this.numberOfChannels = numberOfChannels;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DigitalTelevisionContract)) return false;
+        if (!super.equals(o)) return false;
+        DigitalTelevisionContract that = (DigitalTelevisionContract) o;
+        return getNumberOfChannels() == that.getNumberOfChannels();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getNumberOfChannels());
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() + ";" +
+                this.getClass().getName() + ";" +
+                numberOfChannels + ";";
     }
 }

@@ -1,16 +1,15 @@
-import entities.Contract;
-import entities.DigitalTelevisionContract;
-import entities.MobileContract;
+import entities.*;
 import enums.Gender;
-import entities.Person;
 import org.junit.*;
 import repositories.Repository;
+import services.CSVService;
 
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class RepositoryTest {
+    private static final CSVService csvService = new CSVService();
     private static final Repository repository = new Repository();
     private static final Person owner = new Person("Ivan", "Ivanovich", "Ivanov",
             LocalDate.of(1990, 3, 3), Gender.MAN, 2010, 877740);
@@ -30,6 +29,14 @@ public class RepositoryTest {
         repository.addContract(contract1);
         repository.printContracts();
         System.out.println();
+    }
+
+    @Before
+    public void fillWithData(){
+        repository.clear();
+        repository.addContract(contract1);
+        repository.addContract(contract2);
+        repository.addContract(contract3);
     }
 
     @Test
@@ -71,8 +78,6 @@ public class RepositoryTest {
 
     @Test
     public void searchContracts() {
-        repository.addContract(contract3);
-
         Predicate<Contract> condition = a -> (a.getContractNumber() >= 1000);
         Repository actualRepository = repository.search(condition);
 
@@ -89,9 +94,6 @@ public class RepositoryTest {
 
     @Test
     public void sortContracts() {
-        repository.addContract(contract2);
-        repository.addContract(contract3);
-
         Repository actualRepository = repository.sort(Comparator.nullsLast(Comparator.comparingInt(Contract::getContractNumber)));
 
         int n = 1;
@@ -104,6 +106,32 @@ public class RepositoryTest {
         }
 
         Assert.assertEquals(1, n);
+    }
+
+    @Test
+    public void writeCSVFile() {
+        Repository repository = new Repository();
+        repository.addContract(new WiredInternetContract(
+                LocalDate.of(1999, 1, 1),
+                LocalDate.of(1999, 2, 1),
+                1000, owner, 0));
+        csvService.writeToCSV(repository, "test.csv");
+    }
+
+    @Test
+    public void readCSVFile() {
+        System.out.println("before");
+        repository.printContracts();
+
+        csvService.readCSVFile(repository, "test.csv");
+
+        Contract expected = new WiredInternetContract(
+                LocalDate.of(1999, 1, 1),
+                LocalDate.of(1999, 2, 1),
+                1000, owner, 0);
+        Contract actual = repository.getContractByIndex(repository.getNumberOfContracts() - 1);
+
+        Assert.assertEquals(expected, actual);
     }
 
     @After

@@ -25,8 +25,12 @@ public class Repository {
     /**
      * Field contracts contains contracts
      **/
-    private Contract[] contracts = new Contract[100];
+    public Contract[] contracts = new Contract[100];
 
+    /**
+     * Constructor - creation new object with values
+     *
+     **/
     public Repository() {
     }
 
@@ -173,6 +177,14 @@ public class Repository {
     public Repository sort(Comparator<Contract> comparator) {
         sorter.sort(contracts, comparator);
         return this;
+    }
+
+    /**
+     * Function clearing arrays
+     **/
+    public void clear(){
+        Arrays.fill(contracts, 0, contracts.length, null);
+        numberOfContracts = 0;
     }
 
     /**

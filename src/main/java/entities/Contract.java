@@ -22,7 +22,6 @@ public class Contract {
     /** Field owner means owner of the contract**/
     private Person owner;
 
-
     /**
      * Constructor - creation new object with values
      * @param startDate - start date of the contract
@@ -115,7 +114,8 @@ public class Contract {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return id == contract.id && contractNumber == contract.contractNumber && startDate.equals(contract.startDate) && endDate.equals(contract.endDate) && owner.equals(contract.owner);
+        return  contractNumber == contract.contractNumber && startDate.equals(contract.startDate)
+                && endDate.equals(contract.endDate) && owner.equals(contract.owner);
     }
 
     @Override
@@ -125,13 +125,10 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "contracts.Contract { " +
-                "id = " + id +
-                ", startDate = " + startDate +
-                ", endDate = " + endDate +
-                ", contractNumber = " + contractNumber +
-                ", owner = " + owner +
-                " } ";
+        return  contractNumber + ";" +
+                startDate + ";" +
+                endDate + ";" +
+                owner;
     }
 
 }

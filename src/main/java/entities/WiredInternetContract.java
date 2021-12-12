@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Class contracts.WiredInternetContract
@@ -36,5 +37,26 @@ public class WiredInternetContract extends Contract {
      **/
     public void setConnectionSpeed(int connectionSpeed) {
         this.connectionSpeed = connectionSpeed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WiredInternetContract)) return false;
+        if (!super.equals(o)) return false;
+        WiredInternetContract that = (WiredInternetContract) o;
+        return getConnectionSpeed() == that.getConnectionSpeed();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getConnectionSpeed());
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() + ";" +
+                this.getClass().getName() + ";" +
+                connectionSpeed + ";";
     }
 }
