@@ -6,7 +6,9 @@ import com.opencsv.exceptions.CsvException;
 import entities.*;
 import enums.Gender;
 import repositories.Repository;
+import validators.IValidator;
 
+import javax.xml.validation.Validator;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,9 +17,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CSVService {
+
+    private final List<IValidator> validators = new ArrayList<>();
+
     public void readCSVFile(Repository repository, String csvFile) {
         CSVReader reader = null;
         try {
@@ -32,7 +39,7 @@ public class CSVService {
                     parseString(repository, nextLine);
                 }
             }
-        } catch (IOException | CsvException e) {
+        } catch (CsvException | IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -81,6 +88,9 @@ public class CSVService {
                         owner, number, numberOfSMS, numberOfGB);
             }
 
+            boolean anyMatch = validators.stream()
+                               .map(v -> v.validate(contract))
+                               .anyMatch(vm -> vm.getStatus() == 0);
             repository.addContract(contract);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                  InstantiationException | IllegalAccessException e) {
