@@ -7,6 +7,7 @@ import org.junit.*;
 import repositories.Repository;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class RepositoryTest {
@@ -33,7 +34,7 @@ public class RepositoryTest {
 
     @Test
     public void getContractById() {
-        Contract expectedContract = repository.getContract(contract1.getId());
+        Contract expectedContract = repository.getContractById(contract1.getId());
 
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + contract1);
@@ -47,7 +48,7 @@ public class RepositoryTest {
     public void addContract() {
         repository.addContract(contract2);
 
-        Contract expectedContract = repository.getContract(contract2.getId());
+        Contract expectedContract = repository.getContractById(contract2.getId());
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + contract2);
 
@@ -57,10 +58,10 @@ public class RepositoryTest {
     }
 
     @Test
-    public void deleteContract(){
+    public void deleteContract() {
         repository.deleteContract(contract1.getId());
 
-        Contract expectedContract = repository.getContract(contract1.getId());
+        Contract expectedContract = repository.getContractById(contract1.getId());
         System.out.println("Expected: " + expectedContract);
         System.out.println("Actual: " + null);
 
@@ -69,18 +70,44 @@ public class RepositoryTest {
     }
 
     @Test
-    public void searchContracts(){
+    public void searchContracts() {
         repository.addContract(contract3);
 
-        repository.search(a -> a.getContractNumber() >= 1000);
+        Predicate<Contract> condition = a -> (a.getContractNumber() >= 1000);
+        Repository actualRepository = repository.search(condition);
 
-        for(Contract contract : ){
-
+        int n = 1;
+        for (int i = 0; i < actualRepository.getNumberOfContracts(); i++) {
+            boolean condition2 = actualRepository.getContractById(i).getContractNumber() < 1000;
+            if (condition2) {
+                n = 0;
+            }
         }
+
+        Assert.assertEquals(1, n);
+    }
+
+    @Test
+    public void sortContracts() {
+        repository.addContract(contract2);
+        repository.addContract(contract3);
+
+        Repository actualRepository = repository.sort(Comparator.nullsLast(Comparator.comparingInt(Contract::getContractNumber)));
+
+        int n = 1;
+        for (int i = 0; i < actualRepository.getNumberOfContracts() - 1; i++) {
+            int condition = actualRepository.getContractByIndex(i).getContractNumber()
+                    - actualRepository.getContractByIndex(i + 1).getContractNumber();
+            if (condition > 0) {
+                n = 0;
+            }
+        }
+
+        Assert.assertEquals(1, n);
     }
 
     @After
-    public void print(){
+    public void print() {
         System.out.println();
         repository.printContracts();
         System.out.println();

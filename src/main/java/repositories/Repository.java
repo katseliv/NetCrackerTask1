@@ -7,7 +7,6 @@ import sorters.Sorter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  * Class repositories.Repository
@@ -20,20 +19,15 @@ public class Repository {
      **/
     private Sorter sorter = new BubbleSorter();
     /**
-     * Field contracts contains contracts
-     **/
-    private Contract[] contracts = new Contract[100];
-    /**
      * Field numberOfContracts counts number of contracts
      **/
     private int numberOfContracts = 0;
+    /**
+     * Field contracts contains contracts
+     **/
+    private Contract[] contracts = new Contract[100];
 
     public Repository() {
-
-    }
-
-    private Repository(Contract[] contracts) {
-        this.contracts = contracts;
     }
 
     /**
@@ -46,18 +40,44 @@ public class Repository {
     }
 
     /**
+     * Function getting sorter
+     **/
+    public int getNumberOfContracts() {
+        return numberOfContracts;
+    }
+
+    /**
+     * Function setting sorter
+     *
+     * @param numberOfContracts - number of contracts
+     **/
+    public void setNumberOfContracts(int numberOfContracts) {
+        this.numberOfContracts = numberOfContracts;
+    }
+
+    /**
      * Function getting contract by id
      *
      * @param id - id of contract
      * @return return contract
      **/
-    public Contract getContract(int id) {
+    public Contract getContractById(int id) {
         for (Contract contract : contracts) {
             if (contract != null && contract.getId() == id) {
                 return contract;
             }
         }
         return null;
+    }
+
+    /**
+     * Function getting contract by index
+     *
+     * @param index - index of contract
+     * @return return contract
+     **/
+    public Contract getContractByIndex(int index) {
+        return contracts[index];
     }
 
     /**
@@ -130,7 +150,18 @@ public class Repository {
      * @return new repository filled with contracts that match the condition
      **/
     public Repository search(Predicate<Contract> condition) {
-        return new Repository(Arrays.stream(contracts).filter(condition).toArray(Contract[]::new));
+        Repository repository = new Repository();
+        Contract[] resultContracts =
+                 Arrays.stream(contracts)
+                .filter(Contract::nonNull)
+                .filter(condition)
+                .toArray(Contract[]::new);
+
+        for (Contract resultContract : resultContracts) {
+            repository.addContract(resultContract);
+        }
+
+        return repository;
     }
 
     /**
@@ -141,7 +172,7 @@ public class Repository {
      **/
     public Repository sort(Comparator<Contract> comparator) {
         sorter.sort(contracts, comparator);
-        return new Repository(contracts);
+        return this;
     }
 
     /**

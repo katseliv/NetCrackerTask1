@@ -106,6 +106,10 @@ public class Contract {
         this.owner = owner;
     }
 
+    public static boolean nonNull(Contract contract) {
+        return contract != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,4 +133,5 @@ public class Contract {
                 ", owner = " + owner +
                 " } ";
     }
+
 }
