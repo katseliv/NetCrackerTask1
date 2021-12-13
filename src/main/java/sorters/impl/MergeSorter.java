@@ -5,6 +5,11 @@ import sorters.Sorter;
 
 import java.util.Comparator;
 
+/**
+ * Class sorters.MergeSorter
+ *
+ * @author Ekaterina Selivanova
+ **/
 public class MergeSorter implements Sorter {
 
     @Override
@@ -33,7 +38,6 @@ public class MergeSorter implements Sorter {
         int i = 0, j = 0, k = 0;
         while (i < left && j < right) {
             if (comparator.compare(leftArray[i], rightArray[j]) <= 0) {
-//            if (leftArray[i] <= rightArray[j]) {
                 contracts[k++] = leftArray[i++];
             }
             else {

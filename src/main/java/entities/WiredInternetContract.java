@@ -8,6 +8,7 @@ import java.util.Objects;
  * @autor Ekaterina Selivanova
  */
 public class WiredInternetContract extends Contract {
+
     /** Field connectionSpeed means connection speed**/
     private int connectionSpeed;
 
@@ -59,4 +60,5 @@ public class WiredInternetContract extends Contract {
                 this.getClass().getName() + ";" +
                 connectionSpeed + ";";
     }
+
 }

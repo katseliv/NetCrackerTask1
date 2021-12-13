@@ -120,9 +120,6 @@ public class RepositoryTest {
 
     @Test
     public void readCSVFile() {
-        System.out.println("before");
-        repository.printContracts();
-
         csvService.readCSVFile(repository, "test.csv");
 
         Contract expected = new WiredInternetContract(
@@ -132,6 +129,47 @@ public class RepositoryTest {
         Contract actual = repository.getContractByIndex(repository.getNumberOfContracts() - 1);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void dateValidate(){
+        Repository writeRepository = new Repository();
+        writeRepository.addContract(new WiredInternetContract(
+                LocalDate.of(1999, 2, 1),
+                LocalDate.of(1999, 1, 1),
+                1000, owner, 0));
+        csvService.writeToCSV(writeRepository, "test2.csv");
+        csvService.readCSVFile(repository, "test2.csv");
+
+        Assert.assertEquals(3, repository.getNumberOfContracts());
+    }
+
+    @Test
+    public void personValidate(){
+        Person owner = new Person("Ivan", "Ivanovich", "Ivanov",
+                LocalDate.of(2005, 3, 3), Gender.MAN, 2010, 877740);
+        Repository writeRepository = new Repository();
+        writeRepository.addContract(new WiredInternetContract(
+                LocalDate.of(1999, 1, 1),
+                LocalDate.of(1999, 2, 1),
+                1000, owner, 0));
+        csvService.writeToCSV(writeRepository, "test3.csv");
+        csvService.readCSVFile(repository, "test3.csv");
+
+        Assert.assertEquals(3, repository.getNumberOfContracts());
+    }
+
+    @Test
+    public void contractNumberValidate(){
+        Repository writeRepository = new Repository();
+        writeRepository.addContract(new WiredInternetContract(
+                LocalDate.of(1999, 1, 1),
+                LocalDate.of(1999, 2, 1),
+                -1000, owner, 0));
+        csvService.writeToCSV(writeRepository, "test4.csv");
+        csvService.readCSVFile(repository, "test4.csv");
+
+        Assert.assertEquals(3, repository.getNumberOfContracts());
     }
 
     @After

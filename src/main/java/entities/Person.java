@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Ekaterina Selivanova
  **/
 public class Person {
+
     /**
      * Field uid generating id for objects
      **/
@@ -229,4 +230,5 @@ public class Person {
                 birthday + ";" +
                 passportSeries + " " + passportNumber;
     }
+
 }

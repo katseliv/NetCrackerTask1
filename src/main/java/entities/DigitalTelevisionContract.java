@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author Ekaterina Selivanova
  **/
 public class DigitalTelevisionContract extends Contract {
+
     /** Field numberOfChannels means number of channels**/
     private int numberOfChannels;
 
@@ -59,4 +60,5 @@ public class DigitalTelevisionContract extends Contract {
                 this.getClass().getName() + ";" +
                 numberOfChannels + ";";
     }
+
 }

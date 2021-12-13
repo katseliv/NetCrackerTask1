@@ -14,6 +14,7 @@ import java.util.function.Predicate;
  * @author Ekaterina Selivanova
  **/
 public class Repository {
+
     /**
      * Field sorter
      **/
@@ -28,8 +29,7 @@ public class Repository {
     public Contract[] contracts = new Contract[100];
 
     /**
-     * Constructor - creation new object with values
-     *
+     * Constructor - creation new object without values
      **/
     public Repository() {
     }
@@ -197,4 +197,5 @@ public class Repository {
         }
         System.out.println("}");
     }
+
 }

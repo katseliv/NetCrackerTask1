@@ -8,6 +8,7 @@ import java.util.Objects;
  * @autor Ekaterina Selivanova
  */
 public class MobileContract extends Contract {
+
     /** Field numberOfMinutes means number of minutes**/
     private int numberOfMinutes;
     /** Field numberOfSMS means number of SMS**/
@@ -99,4 +100,5 @@ public class MobileContract extends Contract {
                 numberOfSMS + "|" +
                 numberOfGB + ";";
     }
+
 }
