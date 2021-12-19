@@ -7,7 +7,6 @@ import enums.Status;
  * @author Ekaterina Selivanova
  **/
 public class ValidationMessage {
-
     /**
      * Field status
      **/
@@ -62,5 +61,4 @@ public class ValidationMessage {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }

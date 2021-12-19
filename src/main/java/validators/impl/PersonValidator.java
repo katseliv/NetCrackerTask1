@@ -11,7 +11,6 @@ import validators.ValidationMessage;
  * @author Ekaterina Selivanova
  **/
 public class PersonValidator implements IValidator {
-
     @Override
     public ValidationMessage validate(Contract contract) {
         Person owner = contract.getOwner();
@@ -21,5 +20,4 @@ public class PersonValidator implements IValidator {
         }
         return new ValidationMessage(Status.RED_RISK, "Contract's owner is a child");
     }
-
 }

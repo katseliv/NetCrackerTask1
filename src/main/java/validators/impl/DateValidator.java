@@ -10,7 +10,6 @@ import validators.ValidationMessage;
  * @author Ekaterina Selivanova
  **/
 public class DateValidator implements IValidator {
-
     @Override
     public ValidationMessage validate(Contract contract) {
         if (contract.getStartDate().isBefore(contract.getEndDate())) {
@@ -18,5 +17,4 @@ public class DateValidator implements IValidator {
         }
         return new ValidationMessage(Status.RED_RISK, "Contract's start date is later than contract's end date");
     }
-
 }

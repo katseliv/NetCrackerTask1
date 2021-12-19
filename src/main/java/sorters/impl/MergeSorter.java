@@ -11,7 +11,6 @@ import java.util.Comparator;
  * @author Ekaterina Selivanova
  **/
 public class MergeSorter implements Sorter {
-
     @Override
     public void sort(Contract[] contracts, Comparator<Contract> comparator) {
         mergeSort(contracts, contracts.length, comparator);
@@ -51,5 +50,4 @@ public class MergeSorter implements Sorter {
             contracts[k++] = rightArray[j++];
         }
     }
-
 }

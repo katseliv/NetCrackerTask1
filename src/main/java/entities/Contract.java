@@ -8,7 +8,6 @@ import java.util.Objects;
  * @author Ekaterina Selivanova
  **/
 public class Contract {
-
     /** Field cid generating id for objects**/
     private static int cid = 0;
 
@@ -131,5 +130,4 @@ public class Contract {
                 endDate + ";" +
                 owner;
     }
-
 }

@@ -11,7 +11,6 @@ import java.util.Comparator;
  * @author Ekaterina Selivanova
  **/
 public class BubbleSorter implements Sorter {
-
     @Override
     public void sort(Contract[] contracts, Comparator<Contract> comparator) {
         int n = contracts.length;
@@ -25,5 +24,4 @@ public class BubbleSorter implements Sorter {
             }
         }
     }
-
 }

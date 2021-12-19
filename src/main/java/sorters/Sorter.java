@@ -9,7 +9,6 @@ import java.util.Comparator;
  * @author Ekaterina Selivanova
  **/
 public interface Sorter {
-
     /**
      * Function sorting contracts
      *
@@ -17,5 +16,4 @@ public interface Sorter {
      * @param comparator - comparator
      **/
     void sort(Contract[] contracts, Comparator<Contract> comparator);
-
 }

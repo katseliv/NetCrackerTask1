@@ -1,5 +1,6 @@
 package services;
 
+import annotations.AutoInjectable;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -31,10 +32,10 @@ import java.util.Objects;
  * @author Ekaterina Selivanova
  **/
 public class CSVService {
-
     /**
      * Field list of validators
      **/
+    @AutoInjectable
     private final List<IValidator> validators = new ArrayList<>();
 
     /**
@@ -155,5 +156,4 @@ public class CSVService {
             System.out.println(e.getMessage());
         }
     }
-
 }

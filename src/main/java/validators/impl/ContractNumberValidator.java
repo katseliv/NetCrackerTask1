@@ -10,7 +10,6 @@ import validators.ValidationMessage;
  * @author Ekaterina Selivanova
  **/
 public class ContractNumberValidator implements IValidator {
-
     @Override
     public ValidationMessage validate(Contract contract) {
         if (contract.getContractNumber() > 0) {
@@ -18,5 +17,4 @@ public class ContractNumberValidator implements IValidator {
         }
         return new ValidationMessage(Status.ERROR, "Contract number isn't valid");
     }
-
 }

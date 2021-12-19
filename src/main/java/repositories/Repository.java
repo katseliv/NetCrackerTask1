@@ -1,5 +1,6 @@
 package repositories;
 
+import annotations.AutoInjectable;
 import entities.Contract;
 import sorters.impl.BubbleSorter;
 import sorters.Sorter;
@@ -14,10 +15,10 @@ import java.util.function.Predicate;
  * @author Ekaterina Selivanova
  **/
 public class Repository {
-
     /**
      * Field sorter
      **/
+    @AutoInjectable
     private Sorter sorter = new BubbleSorter();
     /**
      * Field numberOfContracts counts number of contracts
@@ -26,7 +27,7 @@ public class Repository {
     /**
      * Field contracts contains contracts
      **/
-    public Contract[] contracts = new Contract[100];
+    private Contract[] contracts = new Contract[100];
 
     /**
      * Constructor - creation new object without values
@@ -198,4 +199,12 @@ public class Repository {
         System.out.println("}");
     }
 
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "sorter=" + sorter +
+                ", numberOfContracts=" + numberOfContracts +
+                ", contracts=" + Arrays.toString(contracts) +
+                '}';
+    }
 }
