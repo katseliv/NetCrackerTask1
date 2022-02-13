@@ -105,6 +105,9 @@ public class Contract {
         this.owner = owner;
     }
 
+    /**
+     * Function checking if the contract isn't null
+     **/
     public static boolean nonNull(Contract contract) {
         return contract != null;
     }

@@ -2,11 +2,14 @@ package repositories;
 
 import annotations.AutoInjectable;
 import entities.Contract;
+import services.CSVService;
 import sorters.impl.BubbleSorter;
 import sorters.Sorter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -19,7 +22,7 @@ public class Repository {
      * Field sorter
      **/
     @AutoInjectable
-    private Sorter sorter = new BubbleSorter();
+    private Sorter sorter; // = new BubbleSorter()
     /**
      * Field numberOfContracts counts number of contracts
      **/

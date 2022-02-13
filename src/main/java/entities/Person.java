@@ -8,7 +8,6 @@ import java.util.Objects;
 
 /**
  * Class entities.Person
- *
  * @author Ekaterina Selivanova
  **/
 public class Person {
